@@ -67,7 +67,7 @@ body {
 }
 
 .toggle-switch {
-  width: 50px;
+  width: 60px;
   height: 26px;
   background: linear-gradient(141.22deg, #FFC226 9.4%, #F84119 91.91%);
   border-radius: 20px;
@@ -75,12 +75,12 @@ body {
   cursor: pointer;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
   
   
 }
 .toggle-switch span {
-  padding-top: 7%;
+  padding-top: 6%;
   
 }
 
@@ -96,7 +96,7 @@ body {
   transition: transform 0.3s;
 }
 .toggle-switch.active::after{
-  transform: translateX(-24px);
+  transform: translateX(-34px);
 }
 .burger{
   display: none;
@@ -129,7 +129,14 @@ body {
     cursor: pointer;
   }
 
- 
+  .toggle-switch{
+    width: 50px;
+    gap: 10px;
+  }
+
+  .toggle-switch.active::after{
+    transform: translateX(-24px);
+  }
 
   
 }
