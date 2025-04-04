@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Catalog</title>
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+    <!-- Günün Filmi Bölümü -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Movie of the Day</h1>
+            <div id="featured-movie" class="featured-movie">
+                <!-- Günün filmi içeriği buraya eklenecek -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Arama Bölümü -->
+    <section class="search-section">
+        <div class="search-container">
+            <form id="search-form" class="search-form">
+                <div class="search-input-container">
+                    <input type="text" id="search-input" placeholder="Film">
+                    <div class="year-dropdown-container">
+                        <button type="button" id="year-dropdown-btn" class="year-dropdown-btn">Year <span class="dropdown-arrow">▼</span></button>
+                        <div id="year-dropdown-content" class="year-dropdown-content">
+                            <div class="year-option year-reset" data-year="">Tümü</div>
+                            <div class="year-option" data-year="2023">2023</div>
+                            <div class="year-option" data-year="2022">2022</div>
+                            <div class="year-option" data-year="2021">2021</div>
+                            <div class="year-option" data-year="2020">2020</div>
+                            <div class="year-option" data-year="2019">2019</div>
+                            <div class="year-option" data-year="2018">2018</div>
+                            <div class="year-option" data-year="2017">2017</div>
+                            <div class="year-option" data-year="2016">2016</div>
+                            <div class="year-option" data-year="2015">2015</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="search-button">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M19 19L14.65 14.65" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Film Listesi Bölümü -->
+    <section class="movies-section">
+        <h2></h2>
+        <div id="movies-grid" class="movies-grid">
+            <!-- Film kartları buraya eklenecek -->
+        </div>
+        <div id="no-results" class="no-results hidden">
+            <p>No movies found. Please try a different search.</p>
+        </div>
+    </section>
+
+    <!-- Sayfalama Bölümü -->
+    <section class="pagination-section">
+        <div class="pagination" id="pagination">
+            <!-- Sayfalama butonları buraya eklenecek -->
+        </div>
+    </section>
+
+    <script src="js/catalog.js"></script>
+</body>
+</html> 
