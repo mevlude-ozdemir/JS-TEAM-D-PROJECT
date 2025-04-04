@@ -1,18 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-
 .hero {
-    top: 75px;
     height: 100vh;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
+    margin-top: 78px;
+    
 }
 
 .hero::before {
@@ -156,5 +149,16 @@
 }
 
 @media (max-width: 768px) {
-  
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .hero-content {
+        margin-left: 20px;
+        max-width: 90%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
 }
