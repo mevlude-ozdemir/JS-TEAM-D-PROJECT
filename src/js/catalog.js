@@ -76,8 +76,8 @@ async function loadTrendingMovies(page = 1) {
     }
 }
 
-// Film Arama
-async function searchMovies(query, page = 1, year = '') {
+// Film Arama - Global kapsamda erişilebilir yapalım
+window.searchMovies = async function(query, page = 1, year = '') {
     try {
         let url;
         
@@ -107,6 +107,11 @@ async function searchMovies(query, page = 1, year = '') {
             displayMovies(data.results);
             updatePagination(data.page, data.total_pages);
         }
+        
+        // Son arama sorgusunu güncelle
+        lastSearchQuery = query;
+        selectedYear = year;
+        
     } catch (error) {
         console.error('Film arama sırasında hata oluştu:', error);
         showNoResults();
@@ -266,42 +271,5 @@ if (clearSearchBtn) {
     });
 }
 
-// Yıl Dropdown Fonksiyonları
-yearDropdownBtn.addEventListener('click', () => {
-    yearDropdownContent.classList.toggle('show');
-});
-
-// Dışarı tıklandığında dropdown'ı kapat
-window.addEventListener('click', (e) => {
-    if (!e.target.matches('.year-dropdown-btn') && !e.target.matches('.dropdown-arrow')) {
-        if (yearDropdownContent.classList.contains('show')) {
-            yearDropdownContent.classList.remove('show');
-        }
-    }
-});
-
-// Yıl seçimi
-yearOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        const year = option.getAttribute('data-year');
-        
-        if (year === '') {
-            // Tümü seçeneği seçildiğinde
-            selectedYear = '';
-            yearDropdownBtn.innerHTML = 'Year <span class="dropdown-arrow">▼</span>';
-        } else {
-            selectedYear = year;
-            yearDropdownBtn.innerHTML = year + ' <span class="dropdown-arrow">▼</span>';
-        }
-        
-        // Tüm seçeneklerden selected class'ını kaldır
-        yearOptions.forEach(opt => opt.classList.remove('selected'));
-        // Seçilen seçeneğe selected class'ı ekle
-        option.classList.add('selected');
-        
-        yearDropdownContent.classList.remove('show');
-        
-        // Arama yap - isim boş olsa bile yıl filtrelemesi için arama yapılacak
-        searchMovies(searchInput.value.trim(), 1, selectedYear);
-    });
-}); 
+// NOT: Aşağıdaki yıl dropdown fonksiyonlarını search-ui.js'e taşıdık, burada gerekli değil
+// Yıl dropdown fonksiyonları ve yıl seçimi event listener'ları artık search-ui.js dosyasında 
