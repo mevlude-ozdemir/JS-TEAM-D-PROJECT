@@ -133,9 +133,12 @@ export function renderMovies(movies, loadMore = false) {
     <div class="movie-card" data-genre="${movie.genre || 'unknown'}">
       <img src="${
         movie.poster || `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-      }" alt="${movie.title}" class="movie-poster">
+        }" alt="${movie.title}" class="movie-poster">
+      class="movie-poster">
+      onerrror="this.src='./img/herodesktop.svg';">
       <h3 class="movie-title">${movie.title}</h3>
       <p class="movie-genre">${movie.genre || 'Kategori belirtilmemiş'}</p>
+      
       <button class="remove-btn" data-id="${movie.id}">Kaldır</button>
     </div>
   `
@@ -163,7 +166,10 @@ export function renderMovies(movies, loadMore = false) {
   const loadMoreBtn = document.getElementById('load-more');
   if (loadMoreBtn) {
     loadMoreBtn.style.display = endIndex < movies.length ? 'block' : 'none';
-  }
+ 
+  console.log('endIndex:', endIndex);
+  console.log('movies.length:', movies.length);
+ }
 }
 
 // Filmleri türe göre filtrele

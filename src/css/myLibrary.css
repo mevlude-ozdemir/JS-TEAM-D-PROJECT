@@ -36,4 +36,28 @@
   bottom: 12px;
   left: 20px;
   gap: 10px;
+  background:rgba(28, 28, 28, 1);
+color: rgba(183, 183, 183, 1);
+font-family: Roboto;
+font-weight: 500;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+vertical-align: middle;
+
+}
+.no-movies-message {
+  width: 584;
+height: 124;
+top: 880px;
+left: 348px;
+  font-family: Roboto;
+font-weight: 400;
+font-size: 32px;
+line-height: 36px;
+letter-spacing: 0%;
+text-align: center;
+color: rgba(255, 255, 255, 1);
+
 }
