@@ -76,12 +76,12 @@ async function loadTrendingMovies(page = 1) {
     }
 }
 
-// Film Arama - Global kapsamda erişilebilir yapalım
+// Film Arama 
 window.searchMovies = async function(query, page = 1, year = '') {
     try {
         let url;
         
-        // Eğer isim arıyorsak search API'sini kullan
+        
         if (query) {
             url = `${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&page=${page}&include_adult=false`;
             
@@ -89,11 +89,11 @@ window.searchMovies = async function(query, page = 1, year = '') {
                 url += `&primary_release_year=${year}`;
             }
         } 
-        // Sadece yıl filtresi varsa discover API'sini kullan
+        
         else if (year) {
             url = `${BASE_URL}/discover/movie?page=${page}&include_adult=false&sort_by=popularity.desc&primary_release_year=${year}`;
         } 
-        // Her ikisi de yoksa trend filmleri göster
+        
         else {
             return loadTrendingMovies(page);
         }
@@ -183,7 +183,7 @@ function getGenreNames(genreIds) {
         .slice(0, 2); // En fazla 2 tür göster
 }
 
-// Sonuç Bulunamadı
+
 function showNoResults() {
     moviesGrid.innerHTML = '';
     noResults.classList.remove('hidden');
@@ -194,15 +194,15 @@ function showNoResults() {
 function updatePagination(currentPage, totalPages) {
     pagination.innerHTML = '';
     
-    // Önceki sayfa butonu
+    
     if (currentPage > 1) {
         addPaginationButton('<', currentPage - 1, false, 'prev-btn');
     }
     
-    // İlk sayfa
+    
     addPaginationButton(1, 1, currentPage === 1);
     
-    // Üç nokta ve orta sayfalar
+    
     if (currentPage > 3) {
         // Nokta yerine elipsis butonu ekleyelim
         const ellipsisBtn = document.createElement('span');
@@ -224,18 +224,18 @@ function updatePagination(currentPage, totalPages) {
         pagination.appendChild(ellipsisBtn);
     }
     
-    // Son sayfa
+    
     if (totalPages > 1) {
         addPaginationButton(totalPages, totalPages, currentPage === totalPages);
     }
     
-    // Sonraki sayfa butonu
+    
     if (currentPage < totalPages) {
         addPaginationButton('>', currentPage + 1, false, 'next-btn');
     }
 }
 
-// Sayfalama Butonu Ekle
+
 function addPaginationButton(text, page, isActive = false, customClass = '') {
     const button = document.createElement('button');
     button.textContent = text;
@@ -257,7 +257,6 @@ function addPaginationButton(text, page, isActive = false, customClass = '') {
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const query = searchInput.value.trim();
-    // Hem isim hem de yıl varsa veya sadece biri varsa arama yap
     if (query || selectedYear) {
         lastSearchQuery = query;
         searchMovies(query, 1, selectedYear);
