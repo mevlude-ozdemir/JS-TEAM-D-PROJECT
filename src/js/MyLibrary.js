@@ -114,8 +114,19 @@ export function renderMovies(movies, loadMore = false) {
 
   // Eğer film yoksa mesaj göster
   if (movies.length === 0) {
-    movieContainer.innerHTML =
-      '<div class="no-movies-message">OOPS...We are very sorry!You don’t have any movies at your library.</div>';
+    movieContainer.innerHTML = `
+      <div class="no-movies-message">
+      <p>OOPS... We are very sorry! You don’t have any movies at your library.</p>
+      <button id="go-to-catalog" class="search-btn">Search movie</button>
+    </div>
+  `;
+    // Butona tıklanınca catalog sayfasına yönlendir
+    const searchBtn = document.getElementById('go-to-catalog');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', () => {
+        window.location.href = 'index.html'; // veya sayfanın tam yolu
+      });
+    }                       
     const loadMoreBtn = document.getElementById('load-more');
     if (loadMoreBtn) {
       loadMoreBtn.style.display = 'none';
