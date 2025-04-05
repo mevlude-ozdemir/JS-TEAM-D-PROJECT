@@ -153,6 +153,7 @@ export function renderMovies(movies, loadMore = false) {
       <button class="remove-btn" data-id="${movie.id}">Kaldır</button>
     </div>
   `
+      
     )
     .join('');
 
@@ -237,3 +238,32 @@ function loadMoviesFromLibrary() {
   displayedMovies = 0;
   renderMovies(library, false);
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const moviePoster = document.getElementById('movie-poster');
+  const screenWidth = window.innerWidth; // Ekran genişliği
+
+  let posterUrl = '';
+
+  // Ekran genişliğine göre resim seçimi
+  if (screenWidth <= 768) {
+    // Tablet veya mobil cihaz için küçük resim
+    posterUrl = 'img/movie-poster-tablet.jpg';
+  } else {
+    // Masaüstü cihaz için büyük resim
+    posterUrl = 'img/movie-poster-desktop.jpg';
+  }
+
+  moviePoster.src = posterUrl;
+
+  // Eğer API ile veri alıyorsanız, buraya API istekleri ekleyebilirsiniz
+  fetch('https://api.themoviedb.org/3/movie/550?api_key=YOUR_API_KEY')
+    .then(response => response.json())
+    .then(data => {
+      const posterApiUrl = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+      moviePoster.src = posterApiUrl;
+    })
+    .catch(error => {
+      console.error('Error fetching movie data:', error);
+      moviePoster.src = './img/backup-image.jpg'; // Yedek resim
+    });
+});
