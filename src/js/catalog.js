@@ -10,7 +10,6 @@ const clearSearchBtn = document.getElementById('clear-search');
 const moviesGrid = document.getElementById('movies-grid');
 const noResults = document.getElementById('no-results');
 const pagination = document.getElementById('pagination');
-const featuredMovie = document.getElementById('featured-movie');
 const yearDropdownBtn = document.getElementById('year-dropdown-btn');
 const yearDropdownContent = document.getElementById('year-dropdown-content');
 const yearOptions = document.querySelectorAll('.year-option');
@@ -33,12 +32,17 @@ const options = {
 // Sayfa Yüklendiğinde
 document.addEventListener('DOMContentLoaded', () => {
     loadTrendingMovies();
-    loadMovieOfTheDay();
+    // Hero section kaldırıldığı için bu fonksiyonu çağırmıyoruz
+    // loadMovieOfTheDay();
 });
 
-// Günün Filmini Yükle
+// Günün Filmini Yükle - Hero section kaldırıldığı için artık kullanılmıyor
 async function loadMovieOfTheDay() {
     try {
+        const heroSection = document.querySelector('.hero-section');
+        // Hero section yoksa fonksiyonu çalıştırma
+        if (!heroSection) return;
+        
         const response = await fetch(`${BASE_URL}/trending/movie/day`, options);
         const data = await response.json();
         if (data.results && data.results.length > 0) {
@@ -50,11 +54,17 @@ async function loadMovieOfTheDay() {
     }
 }
 
-// Hero Bölümünü Güncelle
+// Hero Bölümünü Güncelle - Hero section kaldırıldığı için artık kullanılmıyor
 function updateHeroSection(movie) {
-    const backdropPath = movie.backdrop_path;
     const heroSection = document.querySelector('.hero-section');
+    // Hero section yoksa fonksiyonu çalıştırma
+    if (!heroSection) return;
+    
+    const backdropPath = movie.backdrop_path;
     heroSection.style.backgroundImage = `url(${IMAGE_BASE_URL}original${backdropPath})`;
+    
+    const featuredMovie = document.getElementById('featured-movie');
+    if (!featuredMovie) return;
     
     featuredMovie.innerHTML = `
         <h2>${movie.title}</h2>
